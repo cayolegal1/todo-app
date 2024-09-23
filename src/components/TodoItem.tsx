@@ -1,16 +1,29 @@
 import { TrashIcon, CheckIcon } from "@heroicons/react/16/solid";
 import type { Todo } from "@/types/store";
+import { useState } from "react";
 
 type TodoItemProps = {
   todo: Todo;
   markAsDone: (todoId: number) => void;
   markAsUndone: (todoId: number) => void;
-}
+  removeTodo: (todoId: number) => void;
+};
 
-const TodoItem = ({ todo, markAsDone, markAsUndone }: TodoItemProps) => {
+const TodoItem = ({ todo, markAsDone, markAsUndone, removeTodo }: TodoItemProps) => {
+
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = () => {
+    setIsDeleting(true);
+    setTimeout(() => {
+      removeTodo(todo.id);
+    }, 300);
+  };
+
   return (
     <li
-      className={`flex justify-between items-center bg-white border border-gray-300 p-2 mb-2 rounded gap-2`}
+    className={`todo_animation flex justify-between items-center bg-white border border-gray-300 p-1 mb-2 rounded gap-2 
+      transition-transform duration-300 min-w-500 ${isDeleting &&  "-translate-y-48"} ${todo.completed && "bg-green-200 opacity-5"}`}
     >
       <h3
         className={`transition-all duration-300 ${
@@ -28,7 +41,10 @@ const TodoItem = ({ todo, markAsDone, markAsUndone }: TodoItemProps) => {
         >
           <CheckIcon />
         </button>
-        <button className="bg-red-500 text-white p-1 rounded flex justify-center hover:opacity-80 transition-opacity duration-300">
+        <button
+          onClick={handleDelete}
+          className="bg-red-500 text-white p-1 rounded flex justify-center hover:opacity-80 transition-opacity duration-300"
+        >
           <TrashIcon width="20px" />
         </button>
       </div>
