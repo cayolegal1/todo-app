@@ -23,7 +23,7 @@ const TodoItem = ({ todo, markAsDone, markAsUndone, removeTodo }: TodoItemProps)
   return (
     <li
     className={`todo_animation flex justify-between items-center bg-white border border-gray-300 p-1 mb-2 rounded gap-2 
-      transition-transform duration-300 min-w-500 ${isDeleting &&  "-translate-y-48"} ${todo.completed && "bg-green-200 opacity-5"}`}
+      transition-transform duration-300 min-w-500 ${isDeleting &&  "-translate-y-48"} ${todo.completed && "bg-gray-200"}`}
     >
       <h3
         className={`transition-all duration-300 ${

@@ -4,7 +4,7 @@ import { get } from "@/services/api";
 import { useTodoStore } from "@/store";
 import type { GetTodosResponse } from "@/types/store";
 
-const url = "https://jsonplaceholder.typicode.com/posts?userId=1";
+const url = "https://jsonplaceholder.typicode.com/todos?userId=1";
 
 export const useGetTodos = () => {
 
