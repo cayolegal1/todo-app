@@ -7,7 +7,7 @@ import type { GetTodosResponse } from "@/types/store";
 const url = "https://jsonplaceholder.typicode.com/posts?userId=1";
 
 export const useGetTodos = () => {
-  
+
   const addTodos = useTodoStore(state => state.addTodos);
   const todos = useTodoStore(state => state.todos);
 
@@ -15,12 +15,12 @@ export const useGetTodos = () => {
     queryKey: ["todos"],
     queryFn: () => get(url),
     initialData: [],
-    initialDataUpdatedAt: 5000,
+    initialDataUpdatedAt: 0,
   });
 
   useEffect(() => {
     if (data.length > 0) {
-      addTodos(data);
+      addTodos(data.map((data) => ({ ...data, completed: false })));
     }
   }, [data]);
 
