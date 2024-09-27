@@ -27,11 +27,10 @@ export const useAddTodo = () => {
     return () => document.removeEventListener("keypress", onKeyEnter);
   }, [debouncedText]);
 
-
   return {
     isValid,
     onSubmit,
     setText,
     text,
-  }
+  };
 };
